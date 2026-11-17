@@ -1,21 +1,21 @@
 {
-  "name": "edugestao-publica-squad-56",
-  "version": "1.0.0",
+  "name": "edugestaopublica-squad-56",
   "private": true,
+  "version": "1.0.0",
+  "description": "Sistema Integrado de Gestão Acadêmica, DIES e Diário Eletrônico - SEDUC/SEED Sergipe",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "vite": "8.3.5"
-  },
-  "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10"
   }
 }

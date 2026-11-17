@@ -1,0 +1,1035 @@
+/**
+ * ============================================================================
+ * DESIGN SYSTEM OFICIAL — SEDUC / SEED SERGIPE (https://seduc.se.gov.br/)
+ * ============================================================================
+ * Paleta cromática extraída das variáveis globais do portal oficial da
+ * Secretaria de Estado da Educação e da Cultura de Sergipe (SEDUC-SE):
+ *
+ * - Azul Institucional Primário: #164194 (--seduc-blue-primary)
+ * - Azul Marinho Governamental:  #1B3D74 / #01448A (--seduc-blue-dark)
+ * - Azul Vibrante Interativo:    #2667FF / #2A7DF0 (--seduc-blue-bright)
+ * - Amarelo Ouro Sergipe:        #FFB900 (--seduc-gold)
+ * - Verde Esmeralda Sergipe:     #2AC034 (--seduc-green)
+ * - Cinza Institucional:         #54595F (--seduc-gray-secondary)
+ * - Superfícies Neutras:         #F4F7FB, #E9EDF4 e #FFFFFF
+ * ============================================================================
+ */
+
+:root {
+  /* Cores Principais SEDUC Sergipe */
+  --seduc-blue-darkest: #0d254c;
+  --seduc-blue-dark: #1b3d74;
+  --seduc-blue-gov: #01448a;
+  --seduc-blue-primary: #164194;
+  --seduc-blue-bright: #2667ff;
+  --seduc-blue-light: #e8f0fe;
+  --seduc-blue-soft: #f0f5ff;
+
+  /* Cores de Destaque da Bandeira / Portal de Sergipe */
+  --seduc-gold: #ffb900;
+  --seduc-gold-dark: #b47d00;
+  --seduc-gold-light: #fff8e1;
+  --seduc-peach: #ffbc7d;
+
+  --seduc-green: #2ac034;
+  --seduc-green-dark: #16801e;
+  --seduc-green-light: #e8faea;
+
+  /* Cores Semânticas de Feedback */
+  --seduc-danger: #e53935;
+  --seduc-danger-dark: #a90707;
+  --seduc-danger-light: #ffebee;
+
+  --seduc-warning: #f59e0b;
+  --seduc-warning-light: #fef3c7;
+
+  /* Tons Neutros e Tipografia */
+  --seduc-bg-page: #f2f5fa;
+  --seduc-bg-surface: #ffffff;
+  --seduc-bg-muted: #e9edf4;
+  --seduc-border: #d8dbe0;
+  --seduc-border-light: #e6ebf2;
+
+  --seduc-text-main: #1b1e2d;
+  --seduc-text-secondary: #54595f;
+  --seduc-text-muted: #6d727d;
+
+  /* Sombras e Raios de Borda */
+  --shadow-xs: 0 1px 2px rgba(22, 65, 148, 0.05);
+  --shadow-sm: 0 2px 8px rgba(22, 65, 148, 0.07);
+  --shadow-md: 0 8px 24px rgba(22, 65, 148, 0.1);
+  --shadow-lg: 0 14px 34px rgba(13, 37, 76, 0.14);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  /* Fontes */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Modo Alto Contraste (Acessibilidade Institucional Gov.br / SEDUC-SE) */
+body.high-contrast {
+  --seduc-bg-page: #0b0f19;
+  --seduc-bg-surface: #131b2e;
+  --seduc-bg-muted: #1e293b;
+  --seduc-border: #334155;
+  --seduc-border-light: #1e293b;
+  --seduc-text-main: #f8fafc;
+  --seduc-text-secondary: #cbd5e1;
+  --seduc-text-muted: #94a3b8;
+  --seduc-blue-soft: #172554;
+  --seduc-blue-light: #1e3a8a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--seduc-bg-page);
+  color: var(--seduc-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================================
+ * BARRA SUPERIOR DO GOVERNO DE SERGIPE (GOV BAR)
+ * ============================================================================ */
+.gov-topbar {
+  background: linear-gradient(90deg, var(--seduc-blue-darkest) 0%, var(--seduc-blue-dark) 100%);
+  color: #ffffff;
+  font-size: 0.78rem;
+  border-bottom: 3px solid var(--seduc-gold);
+  position: relative;
+}
+
+.gov-topbar::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 32%;
+  height: 3px;
+  background-color: var(--seduc-green);
+}
+
+.gov-topbar-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.gov-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.gov-sergipe-flag-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.gov-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.gov-dot.green { background-color: var(--seduc-green); }
+.gov-dot.gold { background-color: var(--seduc-gold); }
+.gov-dot.blue { background-color: #4da3ff; }
+
+.gov-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.gov-link-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.gov-link-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: var(--seduc-gold);
+}
+
+/* ============================================================================
+ * HEADER PRINCIPAL INSTITUCIONAL SEDUC-SE
+ * ============================================================================ */
+.seduc-header {
+  background: linear-gradient(135deg, var(--seduc-blue-primary) 0%, var(--seduc-blue-gov) 60%, var(--seduc-blue-dark) 100%);
+  color: #ffffff;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.seduc-header-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.seduc-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+}
+
+.seduc-crest {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff 0%, #e8f0fe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  border: 2px solid var(--seduc-gold);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.seduc-title-block h1 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.2;
+}
+
+.seduc-title-badge {
+  background-color: var(--seduc-gold);
+  color: #0d254c;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.seduc-title-block p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.15rem;
+}
+
+/* Seletor Interativo de Perfil (DIES, Gestão Acadêmica, Professor) */
+.role-switcher-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(13, 37, 76, 0.45);
+  padding: 0.35rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.role-switcher-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.78);
+  padding-left: 0.55rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.role-tab-btn {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.84);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+}
+
+.role-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.role-tab-btn.active {
+  background: #ffffff;
+  color: var(--seduc-blue-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.role-tab-btn.active .role-dot {
+  background: var(--seduc-green);
+}
+
+.role-counter-pill {
+  background: var(--seduc-gold);
+  color: #0d254c;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.05rem 0.42rem;
+  border-radius: 999px;
+}
+
+/* ============================================================================
+ * LAYOUT PRINCIPAL (SIDEBAR + ÁREA DE CONTEÚDO)
+ * ============================================================================ */
+.app-shell {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  min-height: calc(100vh - 130px);
+}
+
+@media (max-width: 1024px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
+
+/* Sidebar Institucional */
+.seduc-sidebar {
+  background: var(--seduc-bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--seduc-border-light);
+  box-shadow: var(--shadow-sm);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;
+  position: sticky;
+  top: 96px;
+}
+
+.sidebar-profile-card {
+  background: linear-gradient(135deg, var(--seduc-blue-soft) 0%, #e2ecff 100%);
+  border: 1px solid #c8dcff;
+  border-radius: var(--radius-md);
+  padding: 0.95rem;
+  margin-bottom: 1.15rem;
+}
+
+body.high-contrast .sidebar-profile-card {
+  background: #172554;
+  border-color: #2563eb;
+}
+
+.sidebar-profile-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--seduc-blue-primary);
+  background: rgba(22, 65, 148, 0.1);
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.45rem;
+}
+
+body.high-contrast .sidebar-profile-role {
+  color: var(--seduc-gold);
+  background: rgba(255, 185, 0, 0.15);
+}
+
+.sidebar-profile-name {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--seduc-text-main);
+}
+
+.sidebar-profile-unit {
+  font-size: 0.78rem;
+  color: var(--seduc-text-secondary);
+  margin-top: 0.15rem;
+}
+
+.sidebar-nav-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--seduc-text-muted);
+  margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.sidebar-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.sidebar-nav-btn {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--seduc-text-secondary);
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  text-align: left;
+  transition: all 0.18s ease;
+}
+
+.sidebar-nav-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.sidebar-nav-btn:hover {
+  background: var(--seduc-blue-soft);
+  color: var(--seduc-blue-primary);
+}
+
+.sidebar-nav-btn.active {
+  background: var(--seduc-blue-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(22, 65, 148, 0.25);
+}
+
+.sidebar-nav-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.48rem;
+  border-radius: 999px;
+  background: var(--seduc-bg-muted);
+  color: var(--seduc-text-main);
+}
+
+.sidebar-nav-btn.active .sidebar-nav-badge {
+  background: var(--seduc-gold);
+  color: #0d254c;
+}
+
+.sidebar-footer-box {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--seduc-border-light);
+  font-size: 0.75rem;
+  color: var(--seduc-text-muted);
+}
+
+/* ============================================================================
+ * COMPONENTES DE CONTEÚDO: BANNERS, CARDS, GRIDS, TABELAS E FORMULÁRIOS
+ * ============================================================================ */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.page-hero {
+  background: var(--seduc-bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--seduc-border-light);
+  border-left: 5px solid var(--seduc-blue-primary);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--seduc-blue-primary);
+  margin-bottom: 0.25rem;
+}
+
+.page-hero h2 {
+  font-size: 1.35rem;
+  color: var(--seduc-text-main);
+  font-weight: 800;
+}
+
+.page-hero p {
+  font-size: 0.88rem;
+  color: var(--seduc-text-secondary);
+  margin-top: 0.2rem;
+}
+
+/* Grid de Estatísticas (KPIs) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--seduc-bg-surface);
+  border: 1px solid var(--seduc-border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--seduc-text-secondary);
+}
+
+.stat-card-value {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--seduc-text-main);
+  margin: 0.2rem 0;
+  line-height: 1.15;
+}
+
+.stat-card-sub {
+  font-size: 0.74rem;
+  color: var(--seduc-text-muted);
+}
+
+.stat-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon-box.blue {
+  background: var(--seduc-blue-light);
+  color: var(--seduc-blue-primary);
+}
+
+.stat-icon-box.gold {
+  background: var(--seduc-gold-light);
+  color: var(--seduc-gold-dark);
+}
+
+.stat-icon-box.green {
+  background: var(--seduc-green-light);
+  color: var(--seduc-green-dark);
+}
+
+.stat-icon-box.danger {
+  background: var(--seduc-danger-light);
+  color: var(--seduc-danger);
+}
+
+/* Painéis e Cards de Seção */
+.section-card {
+  background: var(--seduc-bg-surface);
+  border: 1px solid var(--seduc-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+}
+
+.section-card-header {
+  padding: 1.1rem 1.35rem;
+  border-bottom: 1px solid var(--seduc-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: linear-gradient(180deg, rgba(232, 240, 254, 0.35) 0%, transparent 100%);
+}
+
+.section-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--seduc-text-main);
+}
+
+.section-card-subtitle {
+  font-size: 0.8rem;
+  color: var(--seduc-text-secondary);
+  margin-top: 0.1rem;
+}
+
+.section-card-body {
+  padding: 1.35rem;
+}
+
+/* Layouts de Duas Colunas */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.two-col-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .two-col-grid,
+  .two-col-equal {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+ * FORMULÁRIOS E INPUTS PADRONIZADOS
+ * ============================================================================ */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.95rem;
+}
+
+.col-12 { grid-column: span 12; }
+.col-8 { grid-column: span 8; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+
+@media (max-width: 680px) {
+  .col-8, .col-6, .col-4, .col-3 {
+    grid-column: span 12;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--seduc-text-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label span.required {
+  color: var(--seduc-danger);
+  margin-left: 2px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.62rem 0.8rem;
+  border: 1px solid var(--seduc-border);
+  border-radius: var(--radius-sm);
+  background: var(--seduc-bg-surface);
+  color: var(--seduc-text-main);
+  font-family: var(--font-body);
+  font-size: 0.87rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--seduc-blue-bright);
+  box-shadow: 0 0 0 3px rgba(38, 103, 255, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 82px;
+}
+
+.form-help {
+  font-size: 0.73rem;
+  color: var(--seduc-text-muted);
+}
+
+/* ============================================================================
+ * BOTÕES INSTITUCIONAIS
+ * ============================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.62rem 1.05rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--seduc-blue-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--seduc-blue-dark);
+  box-shadow: 0 4px 12px rgba(22, 65, 148, 0.25);
+}
+
+.btn-success {
+  background: var(--seduc-green-dark);
+  color: #ffffff;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: #116618;
+}
+
+.btn-gold {
+  background: var(--seduc-gold);
+  color: #0d254c;
+  font-weight: 700;
+}
+
+.btn-gold:hover:not(:disabled) {
+  background: #e5a600;
+}
+
+.btn-danger {
+  background: var(--seduc-danger);
+  color: #ffffff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--seduc-danger-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--seduc-border);
+  color: var(--seduc-text-main);
+}
+
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--seduc-blue-primary);
+  color: var(--seduc-blue-primary);
+  background: var(--seduc-blue-soft);
+}
+
+.btn-sm {
+  padding: 0.36rem 0.68rem;
+  font-size: 0.77rem;
+}
+
+/* ============================================================================
+ * TABELAS ACADÊMICAS E LISTAGENS
+ * ============================================================================ */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.seduc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.seduc-table th {
+  background: var(--seduc-bg-muted);
+  color: var(--seduc-text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 0.95rem;
+  text-align: left;
+  border-bottom: 1px solid var(--seduc-border);
+}
+
+.seduc-table td {
+  padding: 0.8rem 0.95rem;
+  border-bottom: 1px solid var(--seduc-border-light);
+  color: var(--seduc-text-main);
+  vertical-align: middle;
+}
+
+.seduc-table tr:hover td {
+  background-color: rgba(232, 240, 254, 0.35);
+}
+
+/* ============================================================================
+ * BADGES DE STATUS E INDICADORES DE CARGA HORÁRIA
+ * ============================================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-blue {
+  background: var(--seduc-blue-light);
+  color: var(--seduc-blue-primary);
+}
+
+.badge-green {
+  background: var(--seduc-green-light);
+  color: var(--seduc-green-dark);
+}
+
+.badge-gold {
+  background: var(--seduc-gold-light);
+  color: var(--seduc-gold-dark);
+}
+
+.badge-danger {
+  background: var(--seduc-danger-light);
+  color: var(--seduc-danger-dark);
+}
+
+.badge-neutral {
+  background: var(--seduc-bg-muted);
+  color: var(--seduc-text-secondary);
+}
+
+/* Barra de Progresso de Carga Horária (Anti-Ociosidade) */
+.workload-meter {
+  width: 100%;
+  height: 10px;
+  background: var(--seduc-bg-muted);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.35rem;
+}
+
+.workload-meter-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.workload-meter-fill.optimal {
+  background: linear-gradient(90deg, var(--seduc-blue-primary), var(--seduc-green));
+}
+
+.workload-meter-fill.idle {
+  background: linear-gradient(90deg, var(--seduc-gold), #f59e0b);
+}
+
+.workload-meter-fill.overload {
+  background: var(--seduc-danger);
+}
+
+/* Sub-abas internas (Tabs) */
+.subtabs-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  background: var(--seduc-bg-surface);
+  padding: 0.45rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--seduc-border-light);
+}
+
+.subtab-btn {
+  border: none;
+  background: transparent;
+  color: var(--seduc-text-secondary);
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.16s ease;
+}
+
+.subtab-btn:hover {
+  background: var(--seduc-blue-soft);
+  color: var(--seduc-blue-primary);
+}
+
+.subtab-btn.active {
+  background: var(--seduc-blue-primary);
+  color: #ffffff;
+}
+
+/* Botões de Frequência Rápida (Diário Eletrônico) */
+.attendance-toggle-group {
+  display: inline-flex;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--seduc-border);
+}
+
+.att-btn {
+  border: none;
+  background: var(--seduc-bg-surface);
+  color: var(--seduc-text-secondary);
+  padding: 0.38rem 0.72rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.att-btn + .att-btn {
+  border-left: 1px solid var(--seduc-border);
+}
+
+.att-btn.active-P {
+  background: var(--seduc-green-dark);
+  color: #ffffff;
+}
+
+.att-btn.active-F {
+  background: var(--seduc-danger);
+  color: #ffffff;
+}
+
+.att-btn.active-FJ {
+  background: var(--seduc-gold);
+  color: #0d254c;
+}
+
+/* Inputs numéricos de Notas */
+.grade-input {
+  width: 68px;
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid var(--seduc-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  background: var(--seduc-bg-surface);
+  color: var(--seduc-text-main);
+}
+
+.grade-input:focus {
+  outline: none;
+  border-color: var(--seduc-blue-bright);
+  box-shadow: 0 0 0 3px rgba(38, 103, 255, 0.15);
+}
+
+/* Toast Notification */
+.seduc-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--seduc-blue-darkest);
+  color: #ffffff;
+  border-left: 5px solid var(--seduc-gold);
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 100;
+  max-width: 420px;
+  animation: slideInUp 0.25s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
