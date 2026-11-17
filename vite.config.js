@@ -1,5 +1,11 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
+// Configuração do Vite para o projeto React da SEDUC/SEED Sergipe
 export default defineConfig({
-  base: "./",
+  plugins: [react()],
+  server: {
+    port: 5173,
+    open: false,
+  },
 });
