@@ -250,6 +250,54 @@ export function AcademicProvider({ children }) {
     showToast('Turma removida do sistema acadêmico.', 'warning');
   };
 
+  // Matrícula de novo aluno em turma existente (Task #422)
+  // Bloqueia quando a turma já atingiu o limite maxSeats.
+  // Retorna true se matriculou, false se foi bloqueado.
+  const enrollStudent = (classId, studentData) => {
+    const targetClass = classes.find((c) => c.id === classId);
+
+    if (!targetClass) {
+      showToast('Turma não encontrada para realizar a matrícula.', 'warning');
+      return false;
+    }
+
+    if (targetClass.enrolledCount >= targetClass.maxSeats) {
+      showToast(
+        `Turma "${targetClass.code}" lotada: as ${targetClass.maxSeats} vagas já estão preenchidas.`,
+        'warning'
+      );
+      return false;
+    }
+
+    const newStudent = {
+      id: `alu-${Date.now()}`,
+      enrollment: studentData.enrollment,
+      name: studentData.name,
+      classId,
+      totalClassesHeld: 0,
+      absences: 0,
+      grades: {
+        u1: { av1: null, av2: null, qual: null, rec: null },
+        u2: { av1: null, av2: null, qual: null, rec: null },
+        u3: { av1: null, av2: null, qual: null, rec: null },
+        u4: { av1: null, av2: null, qual: null, rec: null },
+      },
+    };
+
+    // Spread em vez de push: cria uma nova lista sem alterar a anterior
+    setStudents((prev) => [...prev, newStudent]);
+
+    // Atualiza o contador de vagas ocupadas da turma
+    setClasses((prev) =>
+      prev.map((cls) =>
+        cls.id === classId ? { ...cls, enrolledCount: cls.enrolledCount + 1 } : cls
+      )
+    );
+
+    showToast(`Aluno "${newStudent.name}" matriculado na turma ${targetClass.code}!`);
+    return true;
+  };
+
   // Alocação de horário e professor em uma turma
   const allocateTeacherToSchedule = (classId, scheduleItem) => {
     const itemWithId = { ...scheduleItem, id: `aloc-${Date.now()}` };
@@ -513,6 +561,7 @@ export function AcademicProvider({ children }) {
     addCalendarEvent,
     addClass,
     deleteClass,
+    enrollStudent,
     allocateTeacherToSchedule,
     removeScheduleItem,
     reviewExceptionalRequest,

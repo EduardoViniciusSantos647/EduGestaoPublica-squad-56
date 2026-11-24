@@ -7,6 +7,8 @@ import {
   Trash2,
   DoorOpen,
   Calendar,
+  UserPlus,
+  AlertTriangle,
 } from 'lucide-react';
 import { useAcademic } from '../../context/AcademicContext';
 
@@ -26,6 +28,7 @@ export default function ClassesManager() {
     teachers,
     addClass,
     deleteClass,
+    enrollStudent,
     allocateTeacherToSchedule,
     removeScheduleItem,
   } = useAcademic();
@@ -52,6 +55,33 @@ export default function ClassesManager() {
     disciplineId: disciplines[0]?.id || 'disc-1',
     teacherId: teachers[0]?.id || 'prof-1',
   });
+
+  // Estado do formulário de matrícula de novo aluno (Task #422)
+  const [enrollForm, setEnrollForm] = useState({
+    classId: classes[0]?.id || '',
+    name: '',
+    enrollment: '',
+  });
+
+  const selectedEnrollClass = classes.find((c) => c.id === enrollForm.classId);
+  const isSelectedClassFull = selectedEnrollClass
+    ? selectedEnrollClass.enrolledCount >= selectedEnrollClass.maxSeats
+    : false;
+
+  const handleEnrollStudent = (e) => {
+    e.preventDefault();
+    if (!enrollForm.classId || !enrollForm.name.trim() || !enrollForm.enrollment.trim()) return;
+    if (isSelectedClassFull) return;
+
+    const enrolled = enrollStudent(enrollForm.classId, {
+      name: enrollForm.name.trim(),
+      enrollment: enrollForm.enrollment.trim(),
+    });
+
+    if (enrolled) {
+      setEnrollForm({ ...enrollForm, name: '', enrollment: '' });
+    }
+  };
 
   const handleCreateClass = (e) => {
     e.preventDefault();
@@ -334,6 +364,106 @@ export default function ClassesManager() {
           </div>
         </section>
       </div>
+
+      {/* Formulário 3: Matrícula de Novo Aluno na Turma (Task #422) */}
+      <section className="section-card" style={{ marginBottom: '1.5rem' }}>
+        <div className="section-card-header">
+          <div>
+            <div className="section-card-title">
+              <UserPlus size={19} color="#164194" />
+              Matricular Novo Aluno na Turma
+            </div>
+            <div className="section-card-subtitle">
+              Escolha a turma e informe os dados do aluno. A matrícula é bloqueada quando a turma
+              atinge o limite de vagas.
+            </div>
+          </div>
+        </div>
+
+        <div className="section-card-body">
+          <form onSubmit={handleEnrollStudent} className="form-grid">
+            <div className="form-group col-12">
+              <label className="form-label">
+                Turma <span className="required">*</span>
+              </label>
+              <select
+                className="form-control"
+                value={enrollForm.classId}
+                onChange={(e) => setEnrollForm({ ...enrollForm, classId: e.target.value })}
+              >
+                {classes.map((cls) => (
+                  <option key={cls.id} value={cls.id}>
+                    {cls.code} — {cls.enrolledCount}/{cls.maxSeats} vagas
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group col-8">
+              <label className="form-label">
+                Nome do Aluno <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                value={enrollForm.name}
+                onChange={(e) => setEnrollForm({ ...enrollForm, name: e.target.value })}
+                placeholder="Ex: João Pedro Almeida Santos"
+                required
+              />
+            </div>
+
+            <div className="form-group col-4">
+              <label className="form-label">
+                Nº de Matrícula <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                value={enrollForm.enrollment}
+                onChange={(e) => setEnrollForm({ ...enrollForm, enrollment: e.target.value })}
+                placeholder="Ex: 202600320"
+                required
+              />
+            </div>
+
+            {selectedEnrollClass && isSelectedClassFull && (
+              <div className="col-12">
+                <div
+                  role="alert"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.7rem 0.9rem',
+                    borderRadius: '8px',
+                    background: 'var(--seduc-danger-light)',
+                    color: 'var(--seduc-danger-dark)',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                  }}
+                >
+                  <AlertTriangle size={17} />
+                  Turma lotada: {selectedEnrollClass.enrolledCount}/{selectedEnrollClass.maxSeats}{' '}
+                  vagas ocupadas. Escolha outra turma ou aumente o limite de vagas.
+                </div>
+              </div>
+            )}
+
+            <div className="col-12">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                style={{ width: '100%' }}
+                disabled={isSelectedClassFull}
+              >
+                <UserPlus size={17} />
+                Matricular Aluno
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
 
       {/* Listagem detalhada das Turmas, Ocupação de Vagas e Grade Horária */}
       <section className="section-card">
